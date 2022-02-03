@@ -4,7 +4,7 @@ import aiogram
 
 class Bot(object):
     def __init__(self):
-        self.__TOKEN = r'1970869482:AAEZHdTAl91xbZ_kD1HYfRgP1bfW_DBQRXk'
+        self.__TOKEN = r'TOKEN'
         self.__name = 'Олег'
         self.__login = r'@nps_rf_bot'
         self.__picture = True
