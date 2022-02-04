@@ -1,4 +1,4 @@
-from aiogram.types import ReplyKeyboardMarkup, KeyboardButton, ReplyKeyboardRemove
+from aiogram.types import ReplyKeyboardMarkup, KeyboardButton
 
 Work_time_b = KeyboardButton(text='🕒Режим работы')
 Menu_b = KeyboardButton(text='🍴Меню')
@@ -9,7 +9,7 @@ b_list = [Menu_b, Work_time_b, Location_b, About_b]
 
 Buttons = ReplyKeyboardMarkup(
     resize_keyboard=True,
-    one_time_keyboard=False,
+    one_time_keyboard=True,
 )
 
 for button in b_list:
