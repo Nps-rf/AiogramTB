@@ -10,7 +10,7 @@ b_list = [Menu_b, Work_time_b, Location_b, About_b]
 
 Buttons = ReplyKeyboardMarkup(
     resize_keyboard=True,
-    one_time_keyboard=True,
+    one_time_keyboard=False,
 )
 
 for button in b_list:
