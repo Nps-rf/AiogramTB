@@ -3,7 +3,11 @@ from Maintenance.Buttons import Buttons, Inline_Location, Order_food
 
 
 async def start_message(message: types.Message):
-    await message.answer(text='Добро пожаловать!', reply_markup=Buttons, disable_notification=True)
+    start_text = '*Добро пожаловать в Имеретинию!*'
+    await message.answer(text=start_text,
+                         reply_markup=Buttons,
+                         disable_notification=True,
+                         parse_mode='markdown')
 
 
 async def reply_commands(message: types.Message):
@@ -39,18 +43,18 @@ async def send_location_adr(query: types.CallbackQuery):
 
 class Food:
     # noinspection SpellCheckingInspection
-    photo = open("Food/Khachapuri.jpg", 'rb')
 
-    @classmethod
-    async def send_food(cls, message: types.Message):
-        caption = '*Хачапури по-имеретински 389р*\n*Вес, гр:* `500`\n' \
-                  '*Состав продукта: * `Мука пшеничная, сулугуни, имеретинский сыр, дрожжи, яйцо куриное, ' \
-                  'масло сливочное,' ' маргарин, молоко, соль, сахар, масло растительное, вода`'
-        await message.answer_photo(photo=cls.photo,
-                                   caption=caption,
-                                   parse_mode='markdown',
-                                   disable_notification=True,
-                                   reply_markup=Order_food)
+    @staticmethod
+    async def send_food(message: types.Message):
+        caption = "*Хачапури по-имеретински 389р*\n*Вес, гр:* `500`\n" \
+                  "*Состав продукта: * `Мука пшеничная, сулугуни, имеретинский сыр, дрожжи, яйцо куриное, " \
+                  "масло сливочное," " маргарин, молоко, соль, сахар, масло растительное, вода`"
+        with open("Food/Khachapuri.jpg", 'rb') as photo:
+            await message.answer_photo(photo=photo,
+                                       caption=caption,
+                                       parse_mode='markdown',
+                                       disable_notification=True,
+                                       reply_markup=Order_food)
 
 
 async def send_work_time(message: types.Message):
