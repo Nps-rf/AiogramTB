@@ -1,9 +1,9 @@
 from aiogram import types, Dispatcher
-from Maintenance.Buttons import Buttons, Inline_Location, Order_food
+from Maintenance.Buttons import Buttons, Inline_Location, Order_food, Next_Inline_About
 
 
 async def start_message(message: types.Message):
-    start_text = '*Добро пожаловать в Имеретинию!*'
+    start_text = '*Добро пожаловать в Имеретию!*'
     await message.answer(text=start_text,
                          reply_markup=Buttons,
                          disable_notification=True,
@@ -11,13 +11,14 @@ async def start_message(message: types.Message):
 
 
 async def reply_commands(message: types.Message):
-    if message.text[1:] == 'Меню':
+    request = message.text[1:]
+    if request == 'Меню':
         await Food.send_food(message)
-    elif message.text[1:] == 'Расположение':
+    elif request == 'Расположение':
         await message.answer('Как удобнее?', reply_markup=Inline_Location)
-    elif message.text[1:] == 'Режим работы':
+    elif request == 'Режим работы':
         await send_work_time(message)
-    elif message.text[1:] == 'О нас':
+    elif request == 'О нас':
         await send_about(message)
     else:
         await message.reply('Ой, я не совсем понял вас(', disable_notification=True,)
@@ -42,13 +43,12 @@ async def send_location_adr(query: types.CallbackQuery):
 
 
 class Food:
-    # noinspection SpellCheckingInspection
-
     @staticmethod
     async def send_food(message: types.Message):
         caption = "*Хачапури по-имеретински 389р*\n*Вес, гр:* `500`\n" \
                   "*Состав продукта: * `Мука пшеничная, сулугуни, имеретинский сыр, дрожжи, яйцо куриное, " \
                   "масло сливочное," " маргарин, молоко, соль, сахар, масло растительное, вода`"
+        # noinspection SpellCheckingInspection
         with open("Food/Khachapuri.jpg", 'rb') as photo:
             await message.answer_photo(photo=photo,
                                        caption=caption,
@@ -62,7 +62,11 @@ async def send_work_time(message: types.Message):
 
 
 async def send_about(message: types.Message):
-    await message.answer('Здесь расположена информация о нас)', disable_notification=True)
+    # noinspection SpellCheckingInspection
+    INFO = '🥤`Пекарня Imereti`🥤' \
+           '\n*Мы стараемся не придерживаться шаблонов и всегда ищем новые и оригинальные идеи на кухне, ' \
+           'чтобы удивлять и радовать вас.*✍️'
+    await message.answer(text=INFO, disable_notification=True, parse_mode='markdown', reply_markup=Next_Inline_About)
 
 
 def activate_message_handlers(dp: Dispatcher):

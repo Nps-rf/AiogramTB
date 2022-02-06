@@ -28,3 +28,8 @@ Inline_Location_map = InlineKeyboardButton(text='На карте', callback_data
 
 Inline_Location.add(Inline_Location_adr).add(Inline_Location_map)
 
+# OTHER INLINES
+Next_Inline_About = InlineKeyboardMarkup(inline_keyboard=True)
+Next_Inline_About_b = InlineKeyboardButton(text='Ещё!', callback_data='Next_Inline_About_b')
+Next_Inline_About.add(Next_Inline_About_b)
+
