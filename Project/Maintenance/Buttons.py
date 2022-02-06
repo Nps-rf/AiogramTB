@@ -1,6 +1,6 @@
 from aiogram.types import ReplyKeyboardMarkup, KeyboardButton, InlineKeyboardMarkup, InlineKeyboardButton
 
-# KEYBOARDS
+# MAIN KEYBOARDS
 Work_time_b = KeyboardButton(text='🕒Режим работы')
 Menu_b = KeyboardButton(text='🍴Меню')
 Location_b = KeyboardButton(text='👣Расположение')
@@ -15,6 +15,11 @@ Buttons = ReplyKeyboardMarkup(
 
 for button in b_list:
     Buttons.insert(button)
+
+# ORDER INLINES
+Order_food = InlineKeyboardMarkup(inline_keyboard=True)
+Order_food_b = InlineKeyboardButton(text='Заказать', callback_data='Order_food_b')
+Order_food.add(Order_food_b)
 
 # INLINES
 Inline_Location = InlineKeyboardMarkup(row_width=2, inline_keyboard=True)
