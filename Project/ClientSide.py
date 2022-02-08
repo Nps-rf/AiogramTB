@@ -1,7 +1,7 @@
 from aiogram import types, Dispatcher
 from Maintenance.Keyboards.buttons import Buttons
 from Maintenance.Inlines.buttons import Inline_Location, Order_food, Next_Inline_About
-from Others.Text import about
+from Others.Text import *
 
 
 async def start_message(message: types.Message):
@@ -72,9 +72,11 @@ async def send_about(message: types.Message):
 
 
 async def send_more_about(query: types.CallbackQuery):
-    await query.message.answer(text=next(about),
+    fact = next(about)
+    await query.message.answer(text=fact,
                                disable_notification=True,
-                               parse_mode='markdown')
+                               parse_mode='markdown',
+                               reply_markup=Next_Inline_About if fact != about_list[-1] else None)
 
 
 def activate_message_handlers(dp: Dispatcher):
