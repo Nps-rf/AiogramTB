@@ -1,6 +1,7 @@
 from aiogram import types, Dispatcher
 from Maintenance.Keyboards.buttons import Buttons
 from Maintenance.Inlines.buttons import Inline_Location, Order_food, Next_Inline_About
+from Others.Text import about
 
 
 async def start_message(message: types.Message):
@@ -71,10 +72,7 @@ async def send_about(message: types.Message):
 
 
 async def send_more_about(query: types.CallbackQuery):
-    await query.message.answer(text='*Факт №1*\n`Перед тем как какой-то продукт попал в меню, '
-                                    'мы пробовали самые разные его вариации на протяжении нескольких месяцев,'
-                                    ' мы постарались правда`',
-                               reply_markup=Inline_Location,
+    await query.message.answer(text=next(about),
                                disable_notification=True,
                                parse_mode='markdown')
 
@@ -95,7 +93,7 @@ def register_callback_query_handlers(dp: Dispatcher):
     """
     dp.register_callback_query_handler(callback=send_location_map, text='Inline_Location_map')
     dp.register_callback_query_handler(callback=send_location_adr, text='Inline_Location_adr')
-    dp.register_callback_query_handler(callback=send_more_info, text='Next_Inline_About_b')
+    dp.register_callback_query_handler(callback=send_more_about, text='Next_Inline_About_b')
 
 
 def activate_handlers(dp: Dispatcher):
