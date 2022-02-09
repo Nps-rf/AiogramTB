@@ -20,7 +20,7 @@ async def reply_commands(message: types.Message):
         await Food.send_food(message)
     elif request == 'Расположение':
         await message.answer('Как удобнее?', reply_markup=Inline_Location)
-    elif request == 'Режим работы':
+    elif request == 'Время работы':
         await send_work_time(message)
     elif request == 'О нас':
         await send_about(message)
@@ -76,8 +76,7 @@ class Food:
             photo_size=512,
             is_flexible=False,  # True если конечная цена зависит от способа доставки
             prices=[PRICE],
-            start_parameter='time-machine-example',
-            payload='some-invoice-payload-for-our-internal-use'
+            start_parameter='Khachapuri-example'
         )
 
 
