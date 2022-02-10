@@ -6,11 +6,13 @@
 * **Command line way [<img align="left" width="22px" src="https://cdn2.iconfinder.com/data/icons/ecqlipse2/CMD.png"/>][cmd]**: 
   * `mkdir Security`
   * `cd Security`
-  * `echo TOKEN = 'YOUR:TOKEN'  > TOKEN.py`
+  * `echo TOKEN = r'YOUR:TOKEN'  > TOKEN.py`
+  * `echo PAYMENT_TOKEN = r'YOUR:TOKEN'>>TOKEN.py`
 * **Manual method [<img align="left" width="22px" src="https://cdn1.iconfinder.com/data/icons/support-centre-hand-drawn-design/512/hand_book_support_centre-256.png"/>][manual]**
   * **Create `Security` directory in project folder**
   * **In this directory, create new file `TOKEN.py`**
   * **In `TOKEN.py` create `TOKEN` variable with raw string value of your bot token**
+  * **Then, create `PAYMENT_TOKEN` variable with raw string value of your payment token**
 
 
 [cmd]: https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/windows-commands
