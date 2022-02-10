@@ -13,6 +13,7 @@
   * **In this directory, create new file `TOKEN.py`**
   * **In `TOKEN.py` create `TOKEN` variable with raw string value of your bot token**
   * **Then, create `PAYMENT_TOKEN` variable with raw string value of your payment token**
+* **Or just use `security_init.bat`**
 
 
 [cmd]: https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/windows-commands
