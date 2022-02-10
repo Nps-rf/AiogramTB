@@ -1,6 +1,7 @@
 ## Before usage
 
 ![Aiogram version](https://img.shields.io/badge/Aiogram-2.17.1-informational)
+![Project status](https://img.shields.io/badge/Status-WIP-red)
 
 * **Command line way [<img align="left" width="22px" src="https://cdn2.iconfinder.com/data/icons/ecqlipse2/CMD.png"/>][cmd]**: 
   * `mkdir Security`
