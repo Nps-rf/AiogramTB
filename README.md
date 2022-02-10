@@ -1,2 +1,3 @@
 # AiogramTB
-Aiogram Telegram Bot
+* Tg: `@nps_rf_bot`
+* Deployed on: `Microsoft Azure`

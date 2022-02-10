@@ -60,25 +60,6 @@ class Food:
                                        disable_notification=True,
                                        reply_markup=Order_food)
 
-    @staticmethod
-    async def order(query: types.CallbackQuery):
-        message = query.message
-        PRICE = types.LabeledPrice(label='Хачапури по-имеретински', amount=38900)
-        await bot.send_invoice(
-            message.chat.id,
-            title='Хачапури по-имеретински',
-            description='Сочное хачапури из великолепнейшего сыра',
-            provider_token=PAYMENT_TOKEN,
-            currency='rub',
-            photo_url=r'https://kupit-sedlo.ru/wp-content/uploads/hachapuri-po-imeretinski4.jpg',
-            photo_height=512,  # !=0/None, иначе изображение не покажется
-            photo_width=712,
-            photo_size=512,
-            is_flexible=False,  # True если конечная цена зависит от способа доставки
-            prices=[PRICE],
-            start_parameter='Khachapuri-example'
-        )
-
 
 async def send_work_time(message: types.Message):
     await message.answer('Мы работаем с *09:00* до *22:00*', disable_notification=True, parse_mode='markdown')
@@ -114,7 +95,6 @@ def register_callback_query_handlers(dp: Dispatcher):
         2) 'Inline_Location_adr' -> show address
         3) 'Next_Inline_About_b' -> show more info about us
     """
-    dp.register_callback_query_handler(callback=Food.order, text='Order_food_b')
     dp.register_callback_query_handler(callback=send_location_map, text='Inline_Location_map')
     dp.register_callback_query_handler(callback=send_location_adr, text='Inline_Location_adr')
     dp.register_callback_query_handler(callback=send_more_about, text='Next_Inline_About_b')
