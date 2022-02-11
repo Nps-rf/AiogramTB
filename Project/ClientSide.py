@@ -1,6 +1,4 @@
 from aiogram import types, Dispatcher
-from create import bot
-from Security.TOKEN import PAYMENT_TOKEN
 from Maintenance.Keyboards.buttons import Buttons
 from Maintenance.Inlines.buttons import Inline_Location, Order_food, Next_Inline_About
 from Others.Text import *
