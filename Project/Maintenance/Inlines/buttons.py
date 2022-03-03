@@ -2,7 +2,7 @@ from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 
 # ORDER Inlines
 Order_food = InlineKeyboardMarkup(inline_keyboard=True)
-Order_food_b = InlineKeyboardButton(text='Заказать', callback_data='Order_food_b')
+Order_food_b = InlineKeyboardButton(text='Добавить в корзину', callback_data='Order_food_b')
 Order_food.add(Order_food_b)
 
 # Inlines

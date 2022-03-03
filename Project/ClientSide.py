@@ -4,6 +4,11 @@ from Maintenance.Inlines.buttons import Inline_Location, Order_food, Next_Inline
 from Others.Text import *
 
 
+class Statements(object):
+    CART = []
+    Current_order = None
+
+
 async def start_message(message: types.Message):
     start_text = '*Добро пожаловать в Имеретию!*'
     await message.answer(text=start_text,
@@ -15,7 +20,7 @@ async def start_message(message: types.Message):
 async def reply_commands(message: types.Message):
     request = message.text[1:]
     if request == 'Меню':
-        await Food.send_food(message)
+        await Food.send_khachapuri(message)
     elif request == 'Расположение':
         await message.answer('Как удобнее?', reply_markup=Inline_Location)
     elif request == 'Время работы':
@@ -45,9 +50,19 @@ async def send_location_adr(query: types.CallbackQuery):
 
 
 # noinspection SpellCheckingInspection
-class Food:
+class Food(object):
+    def __init__(self, ident, name, price, caption, photo_addr): # TODO
+        self.ID = ident
+        self.name = name
+        self.price = price
+        self.caption = caption
+        self.photo_addr = photo_addr
+
+    Khachapuri_ID = r'001'
+
     @staticmethod
-    async def send_food(message: types.Message):
+    async def send_khachapuri(message: types.Message):
+        Statements.Current_order = Food.Khachapuri_ID
         caption = "*Хачапури по-имеретински 389р*\n*Вес, гр:* `500`\n" \
                   "*Состав продукта: * `Мука пшеничная, сулугуни, имеретинский сыр, дрожжи, яйцо куриное, " \
                   "масло сливочное," " маргарин, молоко, соль, сахар, масло растительное, вода`"
@@ -57,6 +72,15 @@ class Food:
                                        parse_mode='markdown',
                                        disable_notification=True,
                                        reply_markup=Order_food)
+
+
+class Payments(object):
+    @staticmethod
+    async def add_to_cart(callback: types.CallbackQuery):
+        message = callback.message
+        Statements.CART.append(Statements.Current_order)
+        await message.answer('Добавил')
+        await message.answer(Statements.Current_order)
 
 
 async def send_work_time(message: types.Message):
@@ -96,6 +120,7 @@ def register_callback_query_handlers(dp: Dispatcher):
     dp.register_callback_query_handler(callback=send_location_map, text='Inline_Location_map')
     dp.register_callback_query_handler(callback=send_location_adr, text='Inline_Location_adr')
     dp.register_callback_query_handler(callback=send_more_about, text='Next_Inline_About_b')
+    dp.register_callback_query_handler(callback=Payments.add_to_cart, text='Order_food_b')
 
 
 def activate_handlers(dp: Dispatcher):
